@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rmariacl/.android/everis-becamobile-android/app/src/main/res/layout/activity_filme_detalhes.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/rmariacl/.android/everis-becamobile-android/app/src/main/res/layout/activity_list_filmes.xml" value="0.1" />
+        <entry key="..\:/Users/rmariacl/.android/everis-becamobile-android/app/src/main/res/layout/activity_list_item.xml" value="0.1" />
         <entry key="..\:/Users/rmariacl/.android/everis-becamobile-android/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/rmariacl/.android/everis-becamobile-android/app/src/main/res/layout/activity_recycler.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>
