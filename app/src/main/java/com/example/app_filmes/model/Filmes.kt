@@ -1,6 +1,8 @@
 package com.example.app_filmes.model
 
-data class Filmes(
+import java.io.Serializable
+
+class Filmes(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,

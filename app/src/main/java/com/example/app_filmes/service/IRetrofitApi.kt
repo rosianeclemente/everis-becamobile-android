@@ -7,10 +7,15 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 
-interface RetrofitApi {
+interface IRetrofitApi {
 
     @GET("trending/movie/week$API_KEY")
-    fun getListFilmes(
+     fun getListFilmes(
+    ): Call<Filmes>
+
+
+    @GET("movies/movie_id")
+    fun detailFilmes(
 
     ): Call<Filmes>
 }
