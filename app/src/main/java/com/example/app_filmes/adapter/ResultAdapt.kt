@@ -1,18 +1,20 @@
 package com.example.app_filmes.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.app_filmes.model.Result
+import com.example.app_filmes.model.Movie
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app_filmes.databinding.ActivityListItemBinding
-import com.example.app_filmes.model.Filmes
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ResultAdapt(val onClickListener: (dogId: Int) -> Unit) : ListAdapter<Result, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
+class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) : ListAdapter<Movie, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeItemViewHolder {
@@ -29,32 +31,59 @@ class ResultAdapt(val onClickListener: (dogId: Int) -> Unit) : ListAdapter<Resul
 
    inner class FilmeItemViewHolder(
         private val binding: ActivityListItemBinding,
-        private val onClickListener: ((filmesId: Int) -> Unit)?,
+        private val onClickListener: (movie: Movie) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(filme: Result) {
+        fun bind(filme: Movie) {
             binding.nomeFilmeItem.text = filme.title
-            binding.caracteristicasFilmeItem.text = filme.overview
+            binding.filmeAvaliacao.rating = filme.getAvaliacao()
+            binding.filmeDate.text = filme.release_date.getDateTimeFormatted()
 
             Glide.with(binding.root.context)
-                .load(filme.getImagemCapa()) //precisa passar url?
+                .load(filme.getImagemCapa())
                 .centerCrop()
                 .into(binding.filmeItem)
 
             binding.root.setOnClickListener {
-                onClickListener?.invoke((filme.id))
+                onClickListener.invoke(filme)
             }
         }
+       private fun String.getDateTimeFormatted(): String {
+           try {
 
-    }
+               val dateFormat = SimpleDateFormat("yyyy-MM-dd", getLocale())
+               val date = dateFormat.parse(this)
+               date?.let {
+
+                   return getDateToStringFormatted(date, "dd-MM-yyyy")
+               }
+           } catch (e: ParseException) {
+               e.localizedMessage?.let {
+                   Log.d("TAG", "getDateTimeFormatted: $e")
+               }
+           }
+           return orEmpty()
+       }
+
+       fun getDateToStringFormatted(date: Date, dateString: String): String {
+           val simpleDateFormat = SimpleDateFormat(dateString, getLocale())
+           return simpleDateFormat.format(date)
+       }
+
+       fun getLocale(): Locale {
+           return Locale("pt", "BR")
+       }
+
+
+   }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Result>() {
-            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem == newItem
             }
 

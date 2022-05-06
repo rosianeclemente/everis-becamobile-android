@@ -3,7 +3,7 @@ package com.example.app_filmes.model
 import java.io.Serializable
 
 
-data class Result(
+data class Movie(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -27,8 +27,8 @@ data class Result(
     fun getTitulo(): String{
         return title
     }
-    fun getAvaliacao(): Double{
-        return vote_average
+    fun getAvaliacao(): Float{
+        return (vote_average/2.0).toFloat()
     }
     fun getResumo(): String{
         return overview

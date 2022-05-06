@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/archivo_black</item>
+        <item>@font/averia_libre_light</item>
         <item>@font/faster_one</item>
+        <item>@font/frank_ruhl_libre_light</item>
+        <item>@font/montserrat_subrayada</item>
+        <item>@font/montserrat_subrayada_bold</item>
     </array>
 </resources>

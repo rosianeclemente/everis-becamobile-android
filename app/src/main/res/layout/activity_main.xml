@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.MainActivity"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/black"
+    tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="NTT FILMES"
-        android:textSize="26dp"
+
         android:fontFamily="@font/faster_one"
+        android:text="NTT FILMES"
+        android:textColor="@color/purple_500"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filmesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="8dp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="6"
-        tools:listitem="@layout/activity_list_item"/>
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        tools:itemCount="5"
+        tools:listitem="@layout/activity_list_item" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

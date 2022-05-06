@@ -1,10 +1,10 @@
 package com.example.app_filmes.model
 
-import java.io.Serializable
-
-class Filmes(
+class Response(
     val page: Int,
-    val results: List<Result>,
+    val results: List<Movie>,
     val total_pages: Int,
     val total_results: Int
-)
+){
+
+}

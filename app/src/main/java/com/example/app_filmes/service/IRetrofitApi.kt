@@ -1,21 +1,20 @@
 package com.example.app_filmes.service
 
 import com.example.app_filmes.Constans.Companion.API_KEY
-import com.example.app_filmes.model.Filmes
-import com.example.app_filmes.model.Result
+import com.example.app_filmes.model.MovieDetails
+import com.example.app_filmes.model.Response
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface IRetrofitApi {
 
     @GET("trending/movie/week$API_KEY")
      fun getListFilmes(
-    ): Call<Filmes>
+    ): Call<Response>
 
 
-    @GET("movies/movie_id")
-    fun detailFilmes(
-
-    ): Call<Filmes>
+    @GET("movie/{movie_id}$API_KEY")
+    fun detailFilmes(@Path("movie_id") id: Int ): Call<MovieDetails>
 }

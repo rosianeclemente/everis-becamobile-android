@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">App-Filmes</string>
+    <string name="nome_do_filme">nome do filme</string>
+    <string name="sinopse">sinopse</string>
+    <string name="sinopse_titulo">Sinopse</string>
+    <string name="nome_do_filme_item">nome do filme</string>
 </resources>
