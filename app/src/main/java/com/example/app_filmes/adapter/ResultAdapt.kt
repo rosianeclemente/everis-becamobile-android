@@ -14,12 +14,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) : ListAdapter<Movie, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
-
+class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) :
+    ListAdapter<Movie, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeItemViewHolder {
         val binding =
-            ActivityListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ActivityListItemBinding.inflate(LayoutInflater.from(parent.context),
+                parent, false)
         return FilmeItemViewHolder(binding, onClickListener)
     }
 
@@ -27,11 +28,9 @@ class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) : ListAda
         holder.bind(getItem(position))
     }
 
-
-
-   inner class FilmeItemViewHolder(
+    inner class FilmeItemViewHolder(
         private val binding: ActivityListItemBinding,
-        private val onClickListener: (movie: Movie) -> Unit
+        private val onClickListener: (movie: Movie) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(filme: Movie) {
@@ -48,47 +47,43 @@ class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) : ListAda
                 onClickListener.invoke(filme)
             }
         }
-       private fun String.getDateTimeFormatted(): String {
-           try {
 
-               val dateFormat = SimpleDateFormat("yyyy-MM-dd", getLocale())
-               val date = dateFormat.parse(this)
-               date?.let {
+        private fun String.getDateTimeFormatted(): String {
+            try {
 
-                   return getDateToStringFormatted(date, "dd-MM-yyyy")
-               }
-           } catch (e: ParseException) {
-               e.localizedMessage?.let {
-                   Log.d("TAG", "getDateTimeFormatted: $e")
-               }
-           }
-           return orEmpty()
-       }
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", getLocale())
+                val date = dateFormat.parse(this)
+                date?.let {
 
-       fun getDateToStringFormatted(date: Date, dateString: String): String {
-           val simpleDateFormat = SimpleDateFormat(dateString, getLocale())
-           return simpleDateFormat.format(date)
-       }
+                    return getDateToStringFormatted(date, "dd-MM-yyyy")
+                }
+            } catch (e: ParseException) {
+                e.localizedMessage?.let {
+                    Log.d("TAG", "getDateTimeFormatted: $e")
+                }
+            }
+            return orEmpty()
+        }
 
-       fun getLocale(): Locale {
-           return Locale("pt", "BR")
-       }
+        fun getDateToStringFormatted(date: Date, dateString: String): String {
+            val simpleDateFormat = SimpleDateFormat(dateString, getLocale())
+            return simpleDateFormat.format(date)
+        }
 
+        fun getLocale(): Locale {
+            return Locale("pt", "BR")
+        }
 
-   }
+    }
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
             override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem.id == newItem.id
             }
-
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
-
-
 }

@@ -25,12 +25,13 @@ data class MovieDetails(
     val title: String,
     val video: Boolean,
     val vote_average: Double,
-    val vote_count: Int
-){
-    fun getImagemCapa(): String{
+    val vote_count: Int,
+) {
+    fun getImagemCapa(): String {
         return "https://image.tmdb.org/t/p/w500$backdrop_path"
     }
-    fun getAvaliacao(): Float{
-        return (vote_average/2.0).toFloat()
+
+    fun getAvaliacao(): Float {
+        return (vote_average / 2.0).toFloat()
     }
 }

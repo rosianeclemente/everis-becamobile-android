@@ -5,14 +5,14 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitCliente  {
-    companion object{
-        private lateinit var  retrofit : Retrofit
+class RetrofitCliente {
+    companion object {
+        private lateinit var retrofit: Retrofit
         private val baseUrl = BASE_URL
 
-        fun getRetrofitInstance(): Retrofit{
+        fun getRetrofitInstance(): Retrofit {
             val httpClient = OkHttpClient.Builder()
-            if(!::retrofit.isInitialized){
+            if (!::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(httpClient.build())
@@ -21,6 +21,7 @@ class RetrofitCliente  {
             }
             return retrofit
         }
+
         fun <S> createService(serviceClass: Class<S>): S {
             return getRetrofitInstance().create(serviceClass)
         }

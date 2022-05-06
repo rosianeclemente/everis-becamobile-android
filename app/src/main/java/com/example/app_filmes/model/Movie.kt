@@ -18,20 +18,14 @@ data class Movie(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
-    val media_type: String
-):Serializable {
+    val media_type: String,
+) : Serializable {
 
-    fun getImagemCapa(): String{
+    fun getImagemCapa(): String {
         return "https://image.tmdb.org/t/p/w500/$poster_path"
     }
-    fun getTitulo(): String{
-        return title
-    }
-    fun getAvaliacao(): Float{
-        return (vote_average/2.0).toFloat()
-    }
-    fun getResumo(): String{
-        return overview
+    fun getAvaliacao(): Float {
+        return (vote_average / 2.0).toFloat()
     }
 
 }
