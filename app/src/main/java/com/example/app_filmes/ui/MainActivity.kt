@@ -3,33 +3,16 @@ package com.example.app_filmes.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.app_filmes.Constans.Companion.BASE_URL
 import com.example.app_filmes.adapter.ResultAdapt
 import com.example.app_filmes.databinding.ActivityMainBinding
 import com.example.app_filmes.model.Movie
 import com.example.app_filmes.model.Response
-import com.example.app_filmes.service.IRetrofitApi
-import com.example.app_filmes.service.RetrofitCliente
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.app_filmes.service.RetrofitCliente.Companion.movieService
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
-
-    private val retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-    private val filmesClient: IRetrofitApi by lazy {
-        retrofit.create(IRetrofitApi::class.java)
-    }
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -43,22 +26,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.filmesRecyclerView.adapter = filmesAdapter
-        val remote = RetrofitCliente.createService(IRetrofitApi::class.java)
-        val call: Call<Response> = remote.getListFilmes()
+        getMovieFromApi()
+    }
+
+    private fun getMovieFromApi(){
+        val call: Call<Response> = movieService.getListFilmes()
         call.enqueue(object : Callback<Response> {
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
-                val s = t.message
+                val filme = t.message
             }
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                val s = response.body()
-                getFilmes(s)
+                val filme= response.body()
+
+                getFilmes(filme)
             }
         })
     }
 
     private fun getFilmes(filme: Response?) {
-        filmesClient.getListFilmes()
+        movieService.getListFilmes()
         filme?.results?.let {
             setListFilmes(it)
         }
@@ -73,4 +60,3 @@ class MainActivity : AppCompatActivity() {
         filmesAdapter.submitList(list)
     }
 }
-

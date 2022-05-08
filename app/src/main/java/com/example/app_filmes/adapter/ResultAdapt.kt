@@ -18,8 +18,7 @@ class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) :
     ListAdapter<Movie, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeItemViewHolder {
-        val binding =
-            ActivityListItemBinding.inflate(LayoutInflater.from(parent.context),
+        val binding = ActivityListItemBinding.inflate(LayoutInflater.from(parent.context),
                 parent, false)
         return FilmeItemViewHolder(binding, onClickListener)
     }
@@ -27,6 +26,7 @@ class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) :
     override fun onBindViewHolder(holder: FilmeItemViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
 
     inner class FilmeItemViewHolder(
         private val binding: ActivityListItemBinding,

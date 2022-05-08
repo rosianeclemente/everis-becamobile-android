@@ -11,19 +11,17 @@ class RetrofitCliente {
         private val baseUrl = BASE_URL
 
         fun getRetrofitInstance(): Retrofit {
-            val httpClient = OkHttpClient.Builder()
             if (!::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(baseUrl)
-                    .client(httpClient.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
             return retrofit
         }
 
-        fun <S> createService(serviceClass: Class<S>): S {
-            return getRetrofitInstance().create(serviceClass)
+        val movieService: IRetrofitApi by lazy {
+            getRetrofitInstance().create(IRetrofitApi::class.java)
         }
 
     }
