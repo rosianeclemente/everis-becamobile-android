@@ -1,9 +1,9 @@
-package com.example.app_filmes.adapter
+package com.example.app_filmes.view.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.app_filmes.model.Movie
+import com.example.app_filmes.view.model.Movie
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +14,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ResultAdapt(private val onClickListener: (movie: Movie) -> Unit) :
-    ListAdapter<Movie, ResultAdapt.FilmeItemViewHolder>(DIFF_CALLBACK) {
+class ResultAdapter(private val onClickListener: (movie: Movie) -> Unit) :
+    ListAdapter<Movie, ResultAdapter.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeItemViewHolder {
         val binding = ActivityListItemBinding.inflate(LayoutInflater.from(parent.context),
