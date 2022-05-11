@@ -1,6 +1,6 @@
 # Avaliação Beca Mobile Android
- <img align="center" height="500" width="250"  src="https://github.com/rosianeclemente/everis-becamobile-android/blob/master/Captura_de_Tela(5).png">
-  <img align="center" height="500" width="250"  src="https://github.com/rosianeclemente/Cresci-Perdi/blob/master/Screenshot_20210824_133703.png">
+
+![Captura de Tela (7)](https://user-images.githubusercontent.com/62728075/167903781-1647ec19-81fd-4052-82e3-127229b11078.png)
 
 
 
