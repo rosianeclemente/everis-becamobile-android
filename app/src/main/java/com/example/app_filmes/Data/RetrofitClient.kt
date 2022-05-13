@@ -1,4 +1,4 @@
-package com.example.app_filmes.service
+package com.example.app_filmes.Data
 
 import com.example.app_filmes.Constans.Companion.BASE_URL
 import retrofit2.Retrofit
@@ -10,7 +10,7 @@ class RetrofitClient {
         private val baseUrl = BASE_URL
 
         fun getRetrofitInstance(): Retrofit {
-            if (!::retrofit.isInitialized) {
+            if (!Companion::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -22,7 +22,5 @@ class RetrofitClient {
         val MOVIE_SERVICE: IRetrofitClient by lazy {
             getRetrofitInstance().create(IRetrofitClient::class.java)
         }
-
     }
-
 }

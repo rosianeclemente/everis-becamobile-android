@@ -1,10 +1,10 @@
 package com.example.app_filmes.viewModel
 
 import androidx.lifecycle.*
-import com.example.app_filmes.view.model.Movie
-import com.example.app_filmes.view.model.MovieApiResult
-import com.example.app_filmes.repository.IMovieRepository
-import com.example.app_filmes.repository.MovieRepository
+import com.example.app_filmes.Domain.Model.Movie
+import com.example.app_filmes.Domain.MovieApiResult
+import com.example.app_filmes.Data.IMovieRepository
+import com.example.app_filmes.Domain.MovieRepository
 import kotlinx.coroutines.launch
 import retrofit2.await
 

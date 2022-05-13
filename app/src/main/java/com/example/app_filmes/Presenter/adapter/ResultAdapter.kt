@@ -1,32 +1,34 @@
-package com.example.app_filmes.view.adapter
+package com.example.app_filmes.Presenter.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.app_filmes.view.model.Movie
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app_filmes.Domain.Model.Movie
 import com.example.app_filmes.databinding.ActivityListItemBinding
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class ResultAdapter(private val onClickListener: (movie: Movie) -> Unit) :
     ListAdapter<Movie, ResultAdapter.FilmeItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeItemViewHolder {
-        val binding = ActivityListItemBinding.inflate(LayoutInflater.from(parent.context),
-                parent, false)
+        val binding = ActivityListItemBinding.inflate(
+            LayoutInflater.from(
+                parent.context
+            ),
+            parent, false
+        )
         return FilmeItemViewHolder(binding, onClickListener)
     }
 
     override fun onBindViewHolder(holder: FilmeItemViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
 
     inner class FilmeItemViewHolder(
         private val binding: ActivityListItemBinding,
@@ -73,7 +75,6 @@ class ResultAdapter(private val onClickListener: (movie: Movie) -> Unit) :
         fun getLocale(): Locale {
             return Locale("pt", "BR")
         }
-
     }
 
     companion object {

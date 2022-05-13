@@ -1,4 +1,4 @@
-package com.example.app_filmes.view.model
+package com.example.app_filmes.Domain.Model
 
 class Response(
     val page: Int,

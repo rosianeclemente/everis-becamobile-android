@@ -1,14 +1,14 @@
-package com.example.app_filmes.view.ui
+package com.example.app_filmes.Presenter.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.app_filmes.Data.RetrofitClient.Companion.MOVIE_SERVICE
+import com.example.app_filmes.Domain.Model.Movie
+import com.example.app_filmes.Domain.Model.MovieDetails
+import com.example.app_filmes.Domain.MovieRepository
 import com.example.app_filmes.databinding.ActivityFilmeDetalhesBinding
-import com.example.app_filmes.view.model.Movie
-import com.example.app_filmes.view.model.MovieDetails
-import com.example.app_filmes.repository.MovieRepository
-import com.example.app_filmes.service.RetrofitClient.Companion.MOVIE_SERVICE
 import com.example.app_filmes.viewModel.MovieDetailsViewModel
 import com.example.app_filmes.viewModel.MovieDetailsViewModelFactory
 
@@ -25,7 +25,6 @@ class FilmesDetalhesActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         getMovie()
-
     }
 
     fun setDados(movieDetail: MovieDetails) {
@@ -38,7 +37,7 @@ class FilmesDetalhesActivity() : AppCompatActivity() {
         binding.avaliacaoFilmeDetalhes.rating = movieDetail.getAvaliacao()
     }
 
-    //Feita sem MVVM e sem coroutines
+    // Feita sem MVVM e sem coroutines
     //    fun getMovie() {
 //        val filme: Movie = intent.getSerializableExtra("filme") as Movie
 //        val call: Call<MovieDetails> = MOVIE_SERVICE.detailFilmes(filme.movieId)
@@ -62,7 +61,5 @@ class FilmesDetalhesActivity() : AppCompatActivity() {
         movieDetailsViewModel.movieDetails.observe(this) { movieDetails ->
             setDados(movieDetails)
         }
-
     }
-
 }

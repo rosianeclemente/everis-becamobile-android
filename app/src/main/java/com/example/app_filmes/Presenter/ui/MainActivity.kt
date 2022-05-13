@@ -1,19 +1,18 @@
-package com.example.app_filmes.view.ui
+package com.example.app_filmes.Presenter.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.app_filmes.view.adapter.ResultAdapter
+import com.example.app_filmes.Data.RetrofitClient.Companion.MOVIE_SERVICE
+import com.example.app_filmes.Domain.Model.Movie
+import com.example.app_filmes.Domain.MovieApiResult
+import com.example.app_filmes.Domain.MovieRepository
+import com.example.app_filmes.Presenter.adapter.ResultAdapter
 import com.example.app_filmes.databinding.ActivityMainBinding
-import com.example.app_filmes.view.model.Movie
-import com.example.app_filmes.view.model.MovieApiResult
-import com.example.app_filmes.repository.MovieRepository
-import com.example.app_filmes.service.RetrofitClient.Companion.MOVIE_SERVICE
 import com.example.app_filmes.viewModel.MovieViewModel
 import com.example.app_filmes.viewModel.MovieViewModelFactory
-
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
     private val movieRepository = MovieRepository(MOVIE_SERVICE)
     private val movieFactory = MovieViewModelFactory(movieRepository)
-    private val movieViewModel by viewModels<MovieViewModel>{movieFactory}
+    private val movieViewModel by viewModels<MovieViewModel> { movieFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         movieViewModel.getMovieFromRetrofit()
         movieAndObserve()
     }
-    private fun movieAndObserve(){
+    private fun movieAndObserve() {
         movieViewModel.getMovieFromRetrofit()
-        movieViewModel.movie.observe(this){ movieApiResult->
-            when(movieApiResult){
+        movieViewModel.movie.observe(this) { movieApiResult ->
+            when (movieApiResult) {
                 is MovieApiResult.Loading -> {
                     Log.d("INFO", "Loanding")
                 }
@@ -80,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, FilmesDetalhesActivity::class.java)
         intent.putExtra("filme", filme)
         startActivity(intent)
-
     }
     private fun setListFilmes(list: List<Movie>) {
         filmesAdapter.submitList(list)

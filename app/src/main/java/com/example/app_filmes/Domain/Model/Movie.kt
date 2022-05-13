@@ -1,7 +1,6 @@
-package com.example.app_filmes.view.model
+package com.example.app_filmes.Domain.Model
 
 import java.io.Serializable
-
 
 data class Movie(
     val adult: Boolean,
@@ -27,5 +26,4 @@ data class Movie(
     fun getAvaliacao(): Float {
         return (vote_average / 2.0).toFloat()
     }
-
 }
