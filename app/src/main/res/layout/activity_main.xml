@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:contentDescription="Nome do aplicativo NTT filmes, lista filmes recentes mais populares"
         android:fontFamily="@font/faster_one"
         android:text="NTT FILMES"
         android:textColor="@color/purple_500"

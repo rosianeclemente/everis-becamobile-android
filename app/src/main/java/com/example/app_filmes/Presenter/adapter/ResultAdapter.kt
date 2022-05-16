@@ -1,5 +1,6 @@
 package com.example.app_filmes.Presenter.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app_filmes.Domain.Model.Movie
+import com.example.app_filmes.R
 import com.example.app_filmes.databinding.ActivityListItemBinding
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -23,7 +25,7 @@ class ResultAdapter(private val onClickListener: (movie: Movie) -> Unit) :
             ),
             parent, false
         )
-        return FilmeItemViewHolder(binding, onClickListener)
+        return FilmeItemViewHolder(binding, onClickListener, parent.context)
     }
 
     override fun onBindViewHolder(holder: FilmeItemViewHolder, position: Int) {
@@ -33,17 +35,21 @@ class ResultAdapter(private val onClickListener: (movie: Movie) -> Unit) :
     inner class FilmeItemViewHolder(
         private val binding: ActivityListItemBinding,
         private val onClickListener: (movie: Movie) -> Unit,
+        private val contextViewHolder: Context
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(filme: Movie) {
             binding.nomeFilmeItem.text = filme.title
+            binding.nomeFilmeItem.contentDescription = String.format(contextViewHolder.getString(R.string.nome_descripton),
+                filme.title )
             binding.filmeAvaliacao.rating = filme.getAvaliacao()
             binding.filmeDate.text = filme.release_date.getDateTimeFormatted()
 
             Glide.with(binding.root.context)
                 .load(filme.getImagemCapa())
                 .centerCrop()
-                .into(binding.filmeItem)
+                .into(binding.imagemCapa)
+            //
 
             binding.root.setOnClickListener {
                 onClickListener.invoke(filme)

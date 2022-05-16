@@ -34,6 +34,7 @@ class FilmesDetalhesActivity() : AppCompatActivity() {
             .into(binding.filmeDetalhes)
         binding.nomeFilmeDetalhes.text = movieDetail.title
         binding.sinopeFilmeDetalhes.text = movieDetail.overview
+        binding.sinopeFilmeDetalhes.contentDescription = movieDetail.overview
         binding.avaliacaoFilmeDetalhes.rating = movieDetail.getAvaliacao()
     }
 

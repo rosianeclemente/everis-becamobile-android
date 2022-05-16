@@ -4,4 +4,7 @@
     <string name="sinopse">sinopse</string>
     <string name="sinopse_titulo">Sinopse</string>
     <string name="nome_do_filme_item">nome do filme</string>
+    <string name="data_descritpion">Data que o filme foi lançado</string>
+    <string name="nome_descripton">Titulo do filme %s  </string>
+    <string name="capa_description">Na imagem mostra a capa do filme selecionado</string>
 </resources>
